@@ -6,41 +6,48 @@ using System.Threading.Tasks;
 
 namespace Lab_07
 {
+
     class Program
     {
         static void Main(string[] args)
         {
-
+            Student su = new Student();
+            try
+            {
+                su.StudentID = "59030222";
+                su.Salary = 360;
+                Console.WriteLine("StudentID : " + su.StudentID);
+                Console.WriteLine("Salary by day : " + su.Salary);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            Console.ReadKey();
         }
     }
-    class Professor : Teacher
+    class Student
+    {
+        private string getStudentID;
+        private double getSalary;
+
+        public string StudentID
         {
-            private float emolument;  // เงินประจำตำแหน่ง
-
-            public Professor(string name, float billingRate) : base(name, billingRate)
+            get { return getStudentID; }
+            set { getStudentID = value; }
+        }
+        public double Salary
+        {
+            get { return getSalary; }
+            set
             {
-            }
-
-            public Professor(string name, float billingRate, float emolument)
-            : this(name, billingRate)
-            {
-                this.emolument = emolument;
-            }
-
-            // new function, because it's different than the base version
-            public new float CalculateCharge(float hours)
-            {
-                if (hours < 1.0F)
-                    hours = 1.0F; // minimum charge.
-                return (hours * billingRate) + emolument;
-            }
-            // new function, because it's different than the base version
-            public new string TypeName()
-            {
-                return ("Professor");
+                if (value > 300 && value <= 450)
+                    getSalary = value;
+                else
+                    throw (new Exception("Error!!!! invalid Salary"));
             }
         }
-
     }
 }
 
+       
